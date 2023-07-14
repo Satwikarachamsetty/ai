@@ -1,0 +1,35 @@
+#1b)bfs----------------------------------------------
+graph={'A':['B','C'],'B':['D','E'],'C':['F','G'],'D':[],
+       'E':['H'],'F':[],'G':[],'H':[]}
+open=[]
+close=[]
+start='A'
+goal='F'
+open.append(start)
+while open:
+  x=open.pop(0)
+  close.append(x)
+  for neigh in graph[x]:
+    if neigh not in open and neigh not in close:
+      open.append(neigh)
+  print("open",open)
+  print("Close",list(reversed(close)))
+  if goal in close:
+    print("Goal reached")
+    break
+
+out---------------------------------------------------------------
+
+open ['B', 'C']
+Close ['A']
+open ['C', 'D', 'E']
+Close ['B', 'A']
+open ['D', 'E', 'F', 'G']
+Close ['C', 'B', 'A']
+open ['E', 'F', 'G']
+Close ['D', 'C', 'B', 'A']
+open ['F', 'G', 'H']
+Close ['E', 'D', 'C', 'B', 'A']
+open ['G', 'H']
+Close ['F', 'E', 'D', 'C', 'B', 'A']
+Goal reached
