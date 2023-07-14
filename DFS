@@ -1,0 +1,33 @@
+graph={'A':['B','C'],'B':['D','E'],'C':['F','G'],'D':[],
+       'E':['H'],'F':[],'G':[],'H':[]}
+open=[]
+close=[]
+start='A'
+goal='F'
+open.append(start)
+while open:
+  x=open.pop()
+  close.append(x)
+  for neigh in graph[x]:
+    if neigh not in open and neigh not in close:
+      open.append(neigh)
+  print("open",open)
+  print("Close",list(reversed(close)))
+  if goal in close:
+    print("Goal reached")
+    break
+
+out-----------------------------------------------------------------------------
+
+open ['B', 'C']
+Close ['A']
+Not reached
+open ['B', 'F', 'G']
+Close ['C', 'A']
+Not reached
+open ['B', 'F']
+Close ['G', 'C', 'A']
+Not reached
+open ['B']
+Close ['F', 'G', 'C', 'A']
+Goal reached
